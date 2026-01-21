@@ -1,0 +1,32 @@
+{
+	# Global options
+	admin off
+	persist_config off
+}
+
+# Main proxy server
+:8080 {
+	# Enable annotation module
+	annotation {
+		enabled true
+		api_endpoint /api/annotations
+		script_path /annotation-assets
+	}
+
+	# Proxy to your local dev server
+	reverse_proxy localhost:3000
+
+	# Optional: Add logging
+	log {
+		output stdout
+		format console
+	}
+}
+
+# Optional: Tunnel configuration (for external access)
+# tunnel.yourdomain.com {
+#     annotation {
+#         enabled true
+#     }
+#     reverse_proxy localhost:3000
+# }
